@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="caseMinusBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input type="text" id="caseQuantity" class="form-control text-center" value="1">
+                           <button id="casePlusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$ <span id="casePrice">50</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -64,9 +64,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="subTotal">1,000</span></h5>
                         <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="total">1,000</span></h5>
                      </div>
                   </div>
                </div>
@@ -92,8 +92,18 @@
          let phonePrice = document.getElementById('phonePrice').innerText;
          let phonePriceFloat = parseFloat(phonePrice);
          let calculatePhonePrice = totalQuantity * 1000;
-         document.getElementById('phonePrice').innerText = calculatePhonePrice;   
+         document.getElementById('phonePrice').innerText = calculatePhonePrice;  
+
+      // phone sub total
+         let subTotal = document.getElementById('subTotal').innerText;
+         document.getElementById('subTotal').innerText = calculatePhonePrice;
+
+      // phone total
+         let total = document.getElementById('total').innerText;
+         document.getElementById('total').innerText = calculatePhonePrice;
       })
+
+
       
       // ** Minus button for phone **
       // phone quantity
@@ -118,7 +128,59 @@
          else if(calculatePhonePrice <= 0){
             document.getElementById('phonePrice').innerText = 0;
          }
+         // phone sub total
+         let subTotal = document.getElementById('subTotal').innerText;
+         document.getElementById('subTotal').innerText = calculatePhonePrice;
+         // phone total
+         let total = document.getElementById('total').innerText;
+         document.getElementById('total').innerText = calculatePhonePrice;
       })
+
+      // ** plus button for Case
+         // case quantity
+      let casePlusBtn = document.getElementById('casePlusBtn');
+      casePlusBtn.addEventListener('click',function(){
+         let caseQuantity = document.getElementById('caseQuantity').value;
+         caseQuantityFloat = parseFloat(caseQuantity);
+         let caseTotalQuantity = caseQuantityFloat + 1;
+         document.getElementById('caseQuantity').value = caseTotalQuantity;
+
+         // case price
+         let casePrice = document.getElementById('casePrice').innerText;
+         let casePriceFloat = parseFloat(casePrice);
+         let calculateCasePrice = caseTotalQuantity * 50;
+         document.getElementById('casePrice').innerText = calculateCasePrice;
+      })
+
+
+      // ** Minus button for Case
+         // case quantity
+      let caseMinusBtn = document.getElementById('caseMinusBtn');
+      caseMinusBtn.addEventListener('click',function(){
+         caseQuantity = document.getElementById('caseQuantity').value;
+         caseQuantityFloat = parseFloat(caseQuantity);
+         caseTotalQuantity = caseQuantityFloat - 1;
+         if(caseTotalQuantity <= 0){
+            document.getElementById('caseQuantity').value = 0;
+         }
+         else{
+            document.getElementById('caseQuantity').value = caseTotalQuantity;
+         }
+
+         // case price
+         casePrice = document.getElementById('casePrice').innerText;
+         casePriceFloat = parseFloat(casePrice);
+         calculateCasePrice = caseTotalQuantity * 50;
+         if(calculateCasePrice <= 0){
+            document.getElementById('casePrice').innerText = 0;
+         }
+         else{
+            document.getElementById('casePrice').innerText = calculateCasePrice;
+         }  
+      })
+
+
+
       
    </script>
 
