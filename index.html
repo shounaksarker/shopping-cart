@@ -80,20 +80,23 @@
 
 
    <script>
+      // ** plus button for phone **
+      // phone quantity
       let phonePlusBtn = document.getElementById('phonePlusBtn');
       phonePlusBtn.addEventListener('click', function(){
          let phoneQuantity = document.getElementById('phoneQuantity').value;
          let phoneQuantityValue = parseFloat(phoneQuantity);
          let totalQuantity = phoneQuantityValue + 1;
          document.getElementById('phoneQuantity').value = totalQuantity;
-
+      // phone price
          let phonePrice = document.getElementById('phonePrice').innerText;
          let phonePriceFloat = parseFloat(phonePrice);
          let calculatePhonePrice = totalQuantity * 1000;
-         document.getElementById('phonePrice').innerText = calculatePhonePrice;     
+         document.getElementById('phonePrice').innerText = calculatePhonePrice;   
       })
       
-
+      // ** Minus button for phone **
+      // phone quantity
       let phoneMinusBtn = document.getElementById('phoneMinusBtn');
       phoneMinusBtn.addEventListener('click', function(){
          phoneQuantity = document.getElementById('phoneQuantity').value;
@@ -105,7 +108,7 @@
          else{
             document.getElementById('phoneQuantity').value = 0;
          }
-
+         // phone price
          phonePrice = document.getElementById('phonePrice').innerText;
          phonePriceFloat = parseFloat(phonePrice);
          calculatePhonePrice = totalQuantity*1000 ;
