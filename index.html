@@ -64,9 +64,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$ <span id="subTotal">1,000</span></h5>
+                        <h5>$ <span id="subTotal">1,050</span></h5>
                         <h5>$0</h5>
-                        <h5>$ <span id="total">1,000</span></h5>
+                        <h5>$ <span id="total">1,500</span></h5>
                      </div>
                   </div>
                </div>
@@ -92,15 +92,13 @@
          let phonePrice = document.getElementById('phonePrice').innerText;
          let phonePriceFloat = parseFloat(phonePrice);
          let calculatePhonePrice = totalQuantity * 1000;
-         document.getElementById('phonePrice').innerText = calculatePhonePrice;  
+         document.getElementById('phonePrice').innerText = calculatePhonePrice;
 
-      // phone sub total
+         //sub
          let subTotal = document.getElementById('subTotal').innerText;
-         document.getElementById('subTotal').innerText = calculatePhonePrice;
-
-      // phone total
-         let total = document.getElementById('total').innerText;
-         document.getElementById('total').innerText = calculatePhonePrice;
+         let subTotalFloat = parseFloat(subTotal);
+         let finalSubtotal = subTotalFloat + calculatePhonePrice;
+         document.getElementById('subTotal').innerText = finalSubtotal;
       })
 
 
@@ -128,12 +126,11 @@
          else if(calculatePhonePrice <= 0){
             document.getElementById('phonePrice').innerText = 0;
          }
-         // phone sub total
-         let subTotal = document.getElementById('subTotal').innerText;
-         document.getElementById('subTotal').innerText = calculatePhonePrice;
-         // phone total
-         let total = document.getElementById('total').innerText;
-         document.getElementById('total').innerText = calculatePhonePrice;
+         //sub
+         subTotal = document.getElementById('subTotal').innerText;
+         subTotalFloat = parseFloat(subTotal);
+         finalSubtotal = subTotalFloat - calculatePhonePrice;
+         document.getElementById('subTotal').innerText = finalSubtotal;
       })
 
       // ** plus button for Case
@@ -150,6 +147,12 @@
          let casePriceFloat = parseFloat(casePrice);
          let calculateCasePrice = caseTotalQuantity * 50;
          document.getElementById('casePrice').innerText = calculateCasePrice;
+
+         //sub
+         subTotal = document.getElementById('subTotal').innerText;
+         subTotalFloat = parseFloat(subTotal);
+         finalSubtotal = subTotalFloat + calculateCasePrice;
+         document.getElementById('subTotal').innerText = finalSubtotal;
       })
 
 
@@ -176,8 +179,21 @@
          }
          else{
             document.getElementById('casePrice').innerText = calculateCasePrice;
-         }  
+         }
+
+         //sub
+         subTotal = document.getElementById('subTotal').innerText;
+         subTotalFloat = parseFloat(subTotal);
+         finalSubtotal = subTotalFloat - calculateCasePrice;
+         document.getElementById('subTotal').innerText = finalSubtotal;
       })
+
+      function subtotal(){
+         let subTotal = document.getElementById('subTotal').innerText;
+         let subTotalFloat = parseFloat(subTotal);
+         let finalSubtotal = subTotalFloat + calculate;
+         document.getElementById('subTotal').innerText = finalSubtotal;
+      }
 
 
 
