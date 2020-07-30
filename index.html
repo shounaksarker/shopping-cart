@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="phoneMinusBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input type="text" id="phoneQuantity" class="form-control text-center" value="1">
+                           <button id="phonePlusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5>$ <span id="phonePrice">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -77,6 +77,31 @@
          </div>
       </div>
    </section>
+
+
+   <script>
+      let phonePlusBtn = document.getElementById('phonePlusBtn');
+      phonePlusBtn.addEventListener('click', function(){
+         let phoneQuantity = document.getElementById('phoneQuantity').value;
+         let phoneQuantityValue = parseFloat(phoneQuantity);
+         let totalQuantity = phoneQuantityValue + 1;
+         document.getElementById('phoneQuantity').value = totalQuantity;
+      })
+      let phoneMinussBtn = document.getElementById('phoneMinusBtn');
+      phoneMinusBtn.addEventListener('click', function(){
+         phoneQuantity = document.getElementById('phoneQuantity').value;
+         phoneQuantityValue = parseFloat(phoneQuantity);
+         totalQuantity = phoneQuantityValue - 1;
+         if(totalQuantity > 0){  
+            document.getElementById('phoneQuantity').value = totalQuantity;
+         }
+         else{
+            document.getElementById('phoneQuantity').value = 0;
+         }
+      })
+      
+   </script>
+
 </body>
 
 </html>
