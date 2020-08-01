@@ -29,7 +29,7 @@
                            <input type="text" id="phone-count" class="form-control text-center" value="1">
                            <button id="phone-increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$ <span id="phone-total">1000</span></h5>
+                        <h5>$ <span id="phone-total">1259</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -48,7 +48,7 @@
                            <button id="case-increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$ <span id="case-total">50</span></h5>
+                        <h5>$ <span id="case-total">59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -64,9 +64,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$ <span id="subTotal">0</span></h5>
-                        <h5>$0</h5>
-                        <h5>$ <span id="total">1,500</span></h5>
+                        <h5>$ <span id="subTotal">1,318</span></h5>
+                        <h5>$ <span id="tax-amount">131.8</span></h5>
+                        <h5>$ <span id="grand-total">1449.8</span></h5>
                      </div>
                   </div>
                </div>
@@ -87,16 +87,17 @@
       document.getElementById('phone-decrease').addEventListener('click',function(){
          handleProductChange('phone', false);
       })
-      //cases
+      //case
       document.getElementById('case-increase').addEventListener('click',function(){
          handleProductChange('case', true);
       })
       document.getElementById('case-decrease').addEventListener('click',function(){
          handleProductChange('case', false);
       })
-      
 
+      //main function 
       function handleProductChange(product, isIncrease){
+         // product quantity increment/decrement
          let productInput = document.getElementById(product + '-count');
          let productCount = parseInt(productInput.value);
          let productNewCount = productCount;
@@ -107,15 +108,61 @@
             productNewCount = productCount - 1;
          }
          productInput.value = productNewCount;
+
+         // product price calculation
          let productTotal = 0;
          if(product == "phone"){
-            productTotal = productNewCount * 1200;
+            productTotal = productNewCount * 1259;
          }
          if(product == "case"){
-            productTotal = productNewCount * 50;
+            productTotal = productNewCount * 59;
          }
          document.getElementById(product + '-total').innerText = productTotal;
+
+         // subtotal + tax + total -> calculation
+         calculateTotal();
       }
+
+      // sub-functions
+      function calculateTotal(){
+
+         // subtotal calculation
+         let phoneCount = getInput("phone");
+         let caseCount = getInput("case");
+         let total = phoneCount * 1259 + caseCount * 59;
+         document.getElementById('subTotal').innerHTML = total;
+
+         // tax calculation
+         let taxAmount = total * 0.1;
+         document.getElementById('tax-amount').innerText = taxAmount.toFixed(1); // toFixed is use for showing float number upto wanted digit;
+
+         // Total calculation
+         let grandTotal = total + taxAmount;
+         document.getElementById('grand-total').innerText = grandTotal;
+
+      }
+
+      function getInput(product){
+         let productInput = document.getElementById(product + '-count');
+         let productCount = parseInt(productInput.value);
+         return productCount;
+      }
+
+      // function handlePhoneChange(isIncrease){
+      //    let phoneInput = document.getElementById('phone-count');
+      //    let phoneCount = parseInt(phoneInput.value);
+      //    let phoneNewCount = phoneCount;
+      //    if (isIncrease == true){
+      //        phoneNewCount = phoneCount + 1;
+      //    }
+      //    if (isIncrease == false && phoneNewCount>0){
+      //       phoneNewCount = phoneCount - 1;
+      //    }
+      //    phoneInput.value = phoneNewCount;
+
+      //    let phoneTotal = phoneNewCount * 1259;
+      //    document.getElementById('phone-total').innerText = phoneTotal;
+      // }
    </script>
 
 </body>
